@@ -44,6 +44,7 @@ index.js                # shebang entry (#/usr/bin/env node → dist/index.js)
 - Single package (not a monorepo). `pnpm build` builds `src/` to `dist/` via `tsdown`.
 - Templates are remote GitHub repos (`hacxy/tpl-{name}`). CLI downloads zip, extracts, renames `package.json` name field.
 - Template index is `templates.json` at repo root, fetched from GitHub raw URL at runtime.
+- Proxy support: automatically detects and uses system proxy (`https_proxy`, `http_proxy`, `HTTPS_PROXY`, `HTTP_PROXY`).
 - Local cache: `~/.fe/cache/{template-name}/`. `--refresh` flag forces re-download.
 - Commit convention: Angular-style, validated by git hook (`scripts/commit-msg.mjs`).
 
