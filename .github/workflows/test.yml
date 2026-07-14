@@ -31,3 +31,5 @@ jobs:
       - name: Linter
         run: pnpm lint
 
+      - name: Test
+        run: pnpm test:run

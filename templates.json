@@ -1,0 +1,10 @@
+{
+  "templates": [
+    {
+      "name": "react-web",
+      "description": "React 19 + Vite + TypeScript web 应用",
+      "repo": "hacxy/tpl-react-web",
+      "category": "web"
+    }
+  ]
+}

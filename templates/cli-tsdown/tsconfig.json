@@ -1,6 +1,0 @@
-{
-  "extends": "@hacxy/tsconfig",
-  "compilerOptions": {
-    "resolveJsonModule": true
-  }
-}

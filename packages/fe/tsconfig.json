@@ -1,9 +1,0 @@
-{
-  "extends": "@hacxy/tsconfig",
-  "compilerOptions": {
-    "resolveJsonModule": true,
-    "allowJs": true
-  },
-
-  "include": ["src/**/*"]
-}

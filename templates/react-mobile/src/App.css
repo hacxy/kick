@@ -1,9 +1,0 @@
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100%;
-}
-.page-wrapper .page-content {
-  height: 100%;
-}
