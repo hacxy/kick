@@ -25,27 +25,43 @@ describe('fetchTemplates', () => {
     expect(result).toEqual(mockTemplates);
   });
 
-  it('should throw error if fetch fails', async () => {
-    const mockResponse = {
-      ok: false,
-      status: 404,
-      statusText: 'Not Found',
-    };
+  it('should retry on failure and succeed', async () => {
+    const mockTemplates = [
+      { name: 'template1', description: 'Test template 1', repo: 'user/template1', category: 'web' },
+    ];
 
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(mockResponse));
-
-    await expect(fetchTemplates()).rejects.toThrow('Failed to fetch template index: 404 Not Found');
-  });
-
-  it('should throw error if response is not ok', async () => {
-    const mockResponse = {
+    const failResponse = {
       ok: false,
       status: 500,
       statusText: 'Internal Server Error',
     };
 
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(mockResponse));
+    const successResponse = {
+      ok: true,
+      json: vi.fn().mockResolvedValue({ templates: mockTemplates }),
+    };
 
-    await expect(fetchTemplates()).rejects.toThrow('Failed to fetch template index: 500 Internal Server Error');
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(failResponse)
+      .mockResolvedValueOnce(successResponse);
+
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await fetchTemplates();
+
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(result).toEqual(mockTemplates);
   });
+
+  it('should throw error after all retries fail', async () => {
+    const failResponse = {
+      ok: false,
+      status: 500,
+      statusText: 'Internal Server Error',
+    };
+
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(failResponse));
+
+    await expect(fetchTemplates()).rejects.toThrow('Failed to fetch after 3 retries');
+  }, 10000);
 });

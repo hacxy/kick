@@ -12,6 +12,10 @@ pnpm build              # build with tsdown
 pnpm lint               # eslint
 pnpm lint:fix           # eslint --fix
 pnpm cz                 # interactive commit (czg)
+pnpm test               # run tests in watch mode
+pnpm test:run           # run tests once
+pnpm test:coverage      # run tests with coverage
+npm run release         # release new version (builds, versions, publishes to npm)
 ```
 
 ## Project Structure
@@ -25,6 +29,10 @@ src/
     download.ts         # download GitHub repo using degit
     cache.ts            # local cache (~/.fe/cache/)
   utils.ts              # common utilities
+test/
+  commands/new.test.ts  # tests for kick new command
+  services/             # tests for services
+  utils.test.ts         # tests for utilities
 scripts/
   commit-msg.mjs        # git hook: commit message validation
 templates.json          # template index (remote)
@@ -46,3 +54,13 @@ index.js                # shebang entry (#/usr/bin/env node → dist/index.js)
 - ESLint: `@hacxy/eslint-config/nodejs`
 - TypeScript: `@hacxy/tsconfig` base config
 - Build tool: `tsdown` (ESM output, node18 target)
+
+## Release Process
+
+1. Update version in `package.json`
+2. Commit changes
+3. Create git tag
+4. Push to GitHub
+5. Publish to npm
+
+Use `npm run release` to automate this process.
