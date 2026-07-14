@@ -43,7 +43,7 @@
     "undici": "^8.7.0"
   },
   "devDependencies": {
-    "@hacxy/bump": "^0.2.0",
+    "@hacxy/bump": "^0.4.0",
     "@hacxy/eslint-config": "^0.4.1",
     "@hacxy/tsconfig": "^0.1.0",
     "@types/node": "^26.1.1",
