@@ -169,7 +169,7 @@ export async function createProject(projectName: string | undefined, options: Ne
   console.log(chalk.green(`项目 ${chalk.bold(visibleName)} 创建成功！`));
   console.log();
   console.log(chalk.cyan(`  cd ${name}`));
-  console.log(chalk.cyan('  pnpm install'));
-  console.log(chalk.cyan('  pnpm dev'));
+  console.log(chalk.cyan('  npm install'));
+  console.log(chalk.cyan('  npm dev'));
   console.log();
 }
