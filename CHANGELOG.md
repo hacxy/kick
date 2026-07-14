@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/hacxy/kick/compare/v0.4.1...v0.4.2) (2026-07-14)
+
+
+### Bug Fixes
+
+* **new:** 将提示命令从 pnpm 改为 npm ([ed71525](https://github.com/hacxy/kick/commit/ed7152564993019e83037294bbd90419e521429a))
+
+
+
 ## 0.4.1 (2026-07-14)
 
 ### Bug Fixes
