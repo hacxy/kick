@@ -14,17 +14,3 @@ Angular-style commit message，格式：`type(scope): subject`
 有效 type：`feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types`
 
 详见 `.github/COMMIT_CONVENTION.md`
-
-## 代理配置
-
-CLI 会自动检测系统代理，支持以下环境变量：
-
-- `https_proxy` / `HTTPS_PROXY`
-- `http_proxy` / `HTTP_PROXY`
-
-在国内环境需要设置代理才能访问 GitHub：
-
-```sh
-export https_proxy=http://127.0.0.1:7890
-export http_proxy=http://127.0.0.1:7890
-```
