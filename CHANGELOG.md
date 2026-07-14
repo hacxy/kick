@@ -1,3 +1,5 @@
+# [0.4.0](https://github.com/hacxy/kick/compare/v0.3.3...v0.4.0) (2026-07-14)
+
 ## [0.3.3](https://github.com/hacxy/kick/compare/v0.3.1...v0.3.3) (2026-07-14)
 
 ### Bug Fixes
