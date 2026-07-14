@@ -1,5 +1,12 @@
+import { fetch as undiciFetch } from 'undici';
+
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchTemplates } from '../../src/services/template.js';
+
+vi.mock('undici', () => ({
+  ProxyAgent: vi.fn(),
+  fetch: vi.fn(),
+}));
 
 describe('fetchTemplates', () => {
   beforeEach(() => {
@@ -17,11 +24,11 @@ describe('fetchTemplates', () => {
       json: vi.fn().mockResolvedValue({ templates: mockTemplates }),
     };
 
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(mockResponse));
+    vi.mocked(undiciFetch).mockResolvedValue(mockResponse as any);
 
     const result = await fetchTemplates();
 
-    expect(fetch).toHaveBeenCalledWith('https://raw.githubusercontent.com/hacxy/kick/main/templates.json');
+    expect(undiciFetch).toHaveBeenCalled();
     expect(result).toEqual(mockTemplates);
   });
 
@@ -41,15 +48,13 @@ describe('fetchTemplates', () => {
       json: vi.fn().mockResolvedValue({ templates: mockTemplates }),
     };
 
-    const fetchMock = vi.fn()
-      .mockResolvedValueOnce(failResponse)
-      .mockResolvedValueOnce(successResponse);
-
-    vi.stubGlobal('fetch', fetchMock);
+    vi.mocked(undiciFetch)
+      .mockResolvedValueOnce(failResponse as any)
+      .mockResolvedValueOnce(successResponse as any);
 
     const result = await fetchTemplates();
 
-    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(undiciFetch).toHaveBeenCalledTimes(2);
     expect(result).toEqual(mockTemplates);
   });
 
@@ -60,7 +65,7 @@ describe('fetchTemplates', () => {
       statusText: 'Internal Server Error',
     };
 
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(failResponse));
+    vi.mocked(undiciFetch).mockResolvedValue(failResponse as any);
 
     await expect(fetchTemplates()).rejects.toThrow('Failed to fetch after 3 retries');
   }, 10000);

@@ -20,7 +20,8 @@
     "kick": "index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "templates.json"
   ],
   "publishConfig": {
     "access": "public"
@@ -39,7 +40,8 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "degit": "^3.6.0"
+    "degit": "^3.6.0",
+    "undici": "^8.7.0"
   },
   "devDependencies": {
     "@hacxy/bump": "^0.2.0",

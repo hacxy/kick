@@ -11,6 +11,9 @@ importers:
       degit:
         specifier: ^3.6.0
         version: 3.6.0
+      undici:
+        specifier: ^8.7.0
+        version: 8.7.0
     devDependencies:
       '@hacxy/bump':
         specifier: ^0.2.0
@@ -2643,6 +2646,10 @@ packages:
 
   undici-types@8.3.0:
     resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
+
+  undici@8.7.0:
+    resolution: {integrity: sha512-N7iQtfyLhIMOFgQubvmLV26svHpO0bqKnAiWotTQCVKCmWrcGbBotPuW1x+xwYZ2VHdSTVUfPQQnlEt1/LouTQ==}
+    engines: {node: '>=22.19.0'}
 
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
@@ -5682,6 +5689,8 @@ snapshots:
   undici-types@6.21.0: {}
 
   undici-types@8.3.0: {}
+
+  undici@8.7.0: {}
 
   unicorn-magic@0.3.0: {}
 
