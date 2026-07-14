@@ -22,10 +22,9 @@ src/
   commands/new.ts       # kick new command
   services/
     template.ts         # fetch remote template index (templates.json)
-    download.ts         # download GitHub zip + extract
+    download.ts         # download GitHub repo using degit
     cache.ts            # local cache (~/.fe/cache/)
   utils.ts              # common utilities
-  yauzl.d.ts            # type declarations for yauzl
 scripts/
   commit-msg.mjs        # git hook: commit message validation
 templates.json          # template index (remote)
