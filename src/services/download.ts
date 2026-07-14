@@ -6,9 +6,9 @@ export function getRepoIdentifier(repo: string): string {
 
 export async function downloadTemplate(repo: string, dest: string): Promise<void> {
   const emitter = degit(repo, {
-    cache: true,
-    force: false,
-    verbose: false,
+    cache: false,
+    force: true,
+    verbose: true,
   });
 
   await emitter.clone(dest);
