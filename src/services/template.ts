@@ -38,11 +38,6 @@ async function fetchWithRetry(url: string, retries = 3): Promise<Response> {
 }
 
 export async function fetchTemplates(): Promise<Template[]> {
-  console.log(`Fetching templates from: ${INDEX_URL}`);
-  const proxyUrl = getProxyUrl();
-  if (proxyUrl) {
-    console.log(`Using proxy: ${proxyUrl}`);
-  }
   const res = await fetchWithRetry(INDEX_URL);
   if (!res.ok) {
     throw new Error(`Failed to fetch template index: ${res.status} ${res.statusText}`);
