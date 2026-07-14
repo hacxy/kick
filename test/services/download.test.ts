@@ -31,9 +31,9 @@ describe('downloadTemplate', () => {
     await downloadTemplate('user/repo', '/dest/path');
 
     expect(degit.default).toHaveBeenCalledWith('user/repo', {
-      cache: true,
-      force: false,
-      verbose: false,
+      cache: false,
+      force: true,
+      verbose: true,
     });
     expect(mockClone).toHaveBeenCalledWith('/dest/path');
   });
