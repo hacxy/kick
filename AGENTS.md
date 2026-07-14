@@ -14,3 +14,7 @@ Angular-style commit message，格式：`type(scope): subject`
 有效 type：`feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types`
 
 详见 `.github/COMMIT_CONVENTION.md`
+
+## 代码规范
+
+- 单个文件不超过 300 行
