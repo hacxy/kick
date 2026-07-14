@@ -28,12 +28,3 @@ CLI 会自动检测系统代理，支持以下环境变量：
 export https_proxy=http://127.0.0.1:7890
 export http_proxy=http://127.0.0.1:7890
 ```
-
-## 发布流程
-
-1. 更新 `package.json` 版本号
-2. 提交并创建 tag
-3. 推送到 GitHub
-4. 发布到 npm（需设置代理）
-
-使用 `npm run release` 可自动完成上述步骤。
