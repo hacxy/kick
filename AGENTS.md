@@ -65,3 +65,19 @@ index.js                # shebang entry (#/usr/bin/env node → dist/index.js)
 5. Publish to npm
 
 Use `npm run release` to automate this process.
+
+## Proxy Configuration
+
+The CLI automatically detects and uses system proxy for network requests:
+
+- `https_proxy` or `HTTPS_PROXY`
+- `http_proxy` or `HTTP_PROXY`
+
+Example:
+
+```sh
+export https_proxy=http://127.0.0.1:7890
+export http_proxy=http://127.0.0.1:7890
+```
+
+This is useful in China where GitHub access is restricted.
