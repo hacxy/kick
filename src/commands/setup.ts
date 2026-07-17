@@ -25,8 +25,13 @@ const AGENTS: Record<string, AgentConfig> = {
   },
 };
 
+function getSkillsDir(): string {
+  // 从 dist/ 向上一级到包根目录
+  return resolve(__dirname, '..', 'skills');
+}
+
 async function getAvailableSkills(): Promise<string[]> {
-  const skillsDir = resolve(__dirname, '../../skills');
+  const skillsDir = getSkillsDir();
   if (!existsSync(skillsDir)) {
     return [];
   }
@@ -35,7 +40,7 @@ async function getAvailableSkills(): Promise<string[]> {
 }
 
 async function installSkills(agent: AgentConfig, skills: string[]): Promise<void> {
-  const skillsSourceDir = resolve(__dirname, '../../skills');
+  const skillsSourceDir = getSkillsDir();
 
   if (!existsSync(agent.skillsDir)) {
     mkdirSync(agent.skillsDir, { recursive: true });
