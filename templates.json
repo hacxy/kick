@@ -11,6 +11,12 @@
       "description": "轻量级 ElysiaJS 后端服务模板",
       "repo": "hacxy/tpl-elysia-server",
       "category": "server"
+    },
+    {
+      "name": "react-elysia",
+      "description": "Elysia + React 19 + Bun monorepo 全栈模板",
+      "repo": "hacxy/tpl-react-elysia",
+      "category": "fullstack"
     }
   ]
 }

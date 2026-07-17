@@ -20,7 +20,8 @@
     "kick": "index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "skills"
   ],
   "publishConfig": {
     "access": "public"

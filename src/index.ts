@@ -2,6 +2,7 @@ import { cac } from 'cac';
 import chalk from 'chalk';
 import pkg from '../package.json';
 import { createProject } from './commands/new.js';
+import { setupSkills } from './commands/setup.js';
 import { fetchTemplates } from './services/template.js';
 
 function bootstrap() {
@@ -49,6 +50,9 @@ function bootstrap() {
         process.exit(1);
       }
     });
+
+  cli.command('setup', '安装 skills 到 AI Agent')
+    .action(setupSkills);
 
   cli.version(pkg.version);
   cli.help();
