@@ -5,6 +5,12 @@
       "description": "React 19 + Vite + TypeScript web 应用",
       "repo": "hacxy/tpl-react-web",
       "category": "web"
+    },
+    {
+      "name": "elysia-server",
+      "description": "轻量级 ElysiaJS 后端服务模板",
+      "repo": "hacxy/tpl-elysia-server",
+      "category": "server"
     }
   ]
 }
