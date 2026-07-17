@@ -1,3 +1,13 @@
+# [0.5.0](https://github.com/hacxy/kick/compare/v0.4.2...v0.5.0) (2026-07-17)
+
+
+### Features
+
+* add setup command to install skills to AI agents ([e72179d](https://github.com/hacxy/kick/commit/e72179d2167abf015573e84c1ad1c00c13a08ea5))
+* **templates:** 添加 elysia-server 模板 ([fb0abd4](https://github.com/hacxy/kick/commit/fb0abd4ba2eec34c1cfab1cd6dce068b0e16ee2c))
+
+
+
 ## [0.4.2](https://github.com/hacxy/kick/compare/v0.4.1...v0.4.2) (2026-07-14)
 
 
