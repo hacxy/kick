@@ -8,9 +8,9 @@ import { fetchTemplates } from './services/template.js';
 function bootstrap() {
   const cli = cac('kick');
 
-  cli.command('[template] [projectName]', '创建新项目')
-    .option('-t, --template <template>', '指定模板名称')
-    .option('--refresh', '强制刷新缓存')
+  cli.command('[template] [projectName]', 'Create a new project')
+    .option('-t, --template <template>', 'Specify template name')
+    .option('--refresh', 'Force refresh cache')
     .action((template: string | undefined, projectName: string | undefined, options: any) => {
       if (template && !options.template) {
         options.template = template;
@@ -18,9 +18,9 @@ function bootstrap() {
       createProject(projectName, options);
     });
 
-  cli.command('new [template] [projectName]', '创建新项目')
-    .option('-t, --template <template>', '指定模板名称')
-    .option('--refresh', '强制刷新缓存')
+  cli.command('new [template] [projectName]', 'Create a new project')
+    .option('-t, --template <template>', 'Specify template name')
+    .option('--refresh', 'Force refresh cache')
     .action((template: string | undefined, projectName: string | undefined, options: any) => {
       if (template && !options.template) {
         options.template = template;
@@ -28,11 +28,11 @@ function bootstrap() {
       createProject(projectName, options);
     });
 
-  cli.command('list', '列出所有可用模板')
+  cli.command('list', 'List all available templates')
     .action(async () => {
       try {
         const templates = await fetchTemplates();
-        console.log(chalk.cyan(`\n可用模板 (${templates.length}):\n`));
+        console.log(chalk.cyan(`\nAvailable templates (${templates.length}):\n`));
 
         const categories = [...new Set(templates.map(t => t.category))];
 
@@ -46,12 +46,12 @@ function bootstrap() {
         }
       }
       catch (err: any) {
-        console.error(chalk.red(`获取模板列表失败: ${err.message}`));
+        console.error(chalk.red(`Failed to fetch templates: ${err.message}`));
         process.exit(1);
       }
     });
 
-  cli.command('setup', '安装 skills 到 AI Agent')
+  cli.command('setup', 'Install skills to AI Agent')
     .action(setupSkills);
 
   cli.version(pkg.version);

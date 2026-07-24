@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from 'node:fs';
-import { cp, readdir } from 'node:fs/promises';
+import { cp, readdir, rm } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
 import chalk from 'chalk';
@@ -55,15 +55,18 @@ async function installSkills(agent: AgentConfig, skills: string[]): Promise<void
         {
           type: 'confirm',
           name: 'shouldOverwrite',
-          message: `${skill} 已存在，是否覆盖？`,
+          message: `${skill} already exists, overwrite?`,
           default: false,
         },
       ]);
 
       if (!shouldOverwrite) {
-        console.log(chalk.yellow(`  跳过 ${skill}`));
+        console.log(chalk.yellow(`  Skipped ${skill}`));
         continue;
       }
+
+      // Remove existing directory before copying
+      await rm(target, { recursive: true, force: true });
     }
 
     await cp(source, target, { recursive: true });
@@ -75,11 +78,11 @@ export async function setupSkills(): Promise<void> {
   const availableSkills = await getAvailableSkills();
 
   if (availableSkills.length === 0) {
-    console.log(chalk.red('未找到 skills 文件'));
+    console.log(chalk.red('No skills files found'));
     process.exit(1);
   }
 
-  console.log(chalk.cyan('\n可用 Skills:\n'));
+  console.log(chalk.cyan('\nAvailable Skills:\n'));
   availableSkills.forEach(s => console.log(chalk.green(`  - ${s}`)));
   console.log();
 
@@ -87,7 +90,7 @@ export async function setupSkills(): Promise<void> {
     {
       type: 'list',
       name: 'agent',
-      message: '选择 AI Agent 平台：',
+      message: 'Select AI Agent platform:',
       choices: Object.entries(AGENTS).map(([value, config]) => ({
         name: config.name,
         value,
@@ -97,14 +100,14 @@ export async function setupSkills(): Promise<void> {
 
   const selectedAgent = AGENTS[agent];
   if (!selectedAgent) {
-    console.log(chalk.red('无效的选择'));
+    console.log(chalk.red('Invalid selection'));
     process.exit(1);
   }
 
-  console.log(chalk.cyan(`\n安装到 ${selectedAgent.name}...\n`));
+  console.log(chalk.cyan(`\nInstalling to ${selectedAgent.name}...\n`));
 
   await installSkills(selectedAgent, availableSkills);
 
-  console.log(chalk.green('\n安装完成！'));
-  console.log(chalk.gray(`Skills 目录: ${selectedAgent.skillsDir}\n`));
+  console.log(chalk.green('\nInstallation completed!'));
+  console.log(chalk.gray(`Skills directory: ${selectedAgent.skillsDir}\n`));
 }

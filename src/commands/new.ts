@@ -21,7 +21,7 @@ async function selectTemplate(templates: Template[]): Promise<Template> {
     {
       type: 'list',
       name: 'category',
-      message: '请选择项目类型：',
+      message: 'Select project type:',
       choices: categories,
     },
   ]);
@@ -32,7 +32,7 @@ async function selectTemplate(templates: Template[]): Promise<Template> {
     {
       type: 'list',
       name: 'template',
-      message: '请选择模板：',
+      message: 'Select template:',
       choices: filtered.map(t => ({
         name: `${t.name.padEnd(20)} ${chalk.gray(t.description)}`,
         value: t,
@@ -47,8 +47,8 @@ async function resolveTemplate(options: NewOptions, templates: Template[]): Prom
   if (options.template) {
     const found = templates.find(t => t.name === options.template);
     if (!found) {
-      console.error(chalk.red(`模板 "${options.template}" 不存在`));
-      console.log(chalk.gray('可用模板：'));
+      console.error(chalk.red(`Template "${options.template}" not found`));
+      console.log(chalk.gray('Available templates:'));
       templates.forEach(t => console.log(chalk.gray(`  - ${t.name}`)));
       process.exit(1);
       // Unreachable code, but TypeScript needs it
@@ -67,9 +67,9 @@ async function resolveProjectName(argName?: string): Promise<string> {
     {
       type: 'input',
       name: 'projectName',
-      message: '请输入项目名称：',
+      message: 'Enter project name:',
       validate: (input: string) => {
-        if (!input) return '项目名称不能为空';
+        if (!input) return 'Project name cannot be empty';
         return true;
       },
     },
@@ -86,13 +86,13 @@ async function ensureDestEmpty(dest: string, projectName: string): Promise<void>
       {
         type: 'confirm',
         name: 'shouldClear',
-        message: `${dest} 已存在且非空，是否清空后继续？`,
+        message: `${dest} already exists and is not empty, clear and continue?`,
         default: false,
       },
     ]);
 
     if (!shouldClear) {
-      console.log(chalk.yellow('操作已取消'));
+      console.log(chalk.yellow('Operation cancelled'));
       process.exit(0);
     }
 
@@ -109,29 +109,29 @@ async function ensureDestEmpty(dest: string, projectName: string): Promise<void>
 async function setupTemplate(template: Template, dest: string, refresh: boolean): Promise<void> {
   // Try cache first
   if (!refresh && hasCache(template.name)) {
-    const spinner = ora('从缓存复制模板...').start();
+    const spinner = ora('Copying template from cache...').start();
     try {
       await copyFromCache(template.name, dest);
-      spinner.succeed('模板复制完成');
+      spinner.succeed('Template copied successfully');
       return;
     }
     catch {
-      spinner.warn('缓存复制失败，重新下载');
+      spinner.warn('Cache copy failed, downloading again');
       await clearTemplateCache(template.name);
     }
   }
 
   // Download from remote
-  const spinner = ora(`正在下载模板 ${chalk.cyan(template.name)}...`).start();
+  const spinner = ora(`Downloading template ${chalk.cyan(template.name)}...`).start();
   try {
     await downloadTemplate(template.repo, dest);
-    spinner.succeed('模板下载完成');
+    spinner.succeed('Template downloaded successfully');
 
     // Save to cache
     await saveToCache(template.name, dest);
   }
   catch (err: any) {
-    spinner.fail(`模板下载失败: ${err.message}`);
+    spinner.fail(`Template download failed: ${err.message}`);
     process.exit(1);
   }
 }
@@ -143,15 +143,15 @@ async function renameSpecialFiles(dest: string): Promise<void> {
 }
 
 export async function createProject(projectName: string | undefined, options: NewOptions): Promise<void> {
-  const spinner = ora('正在获取模板列表...').start();
+  const spinner = ora('Fetching template list...').start();
 
   let templates: Template[];
   try {
     templates = await fetchTemplates();
-    spinner.succeed(`找到 ${templates.length} 个模板`);
+    spinner.succeed(`Found ${templates.length} templates`);
   }
   catch (err: any) {
-    spinner.fail(`获取模板列表失败: ${err.message}`);
+    spinner.fail(`Failed to fetch templates: ${err.message}`);
     process.exit(1);
   }
 
@@ -166,7 +166,7 @@ export async function createProject(projectName: string | undefined, options: Ne
   await updatePackageName(dest, visibleName);
 
   console.log();
-  console.log(chalk.green(`项目 ${chalk.bold(visibleName)} 创建成功！`));
+  console.log(chalk.green(`Project ${chalk.bold(visibleName)} created successfully!`));
   console.log();
   console.log(chalk.cyan(`  cd ${name}`));
   console.log(chalk.cyan('  npm install'));
