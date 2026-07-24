@@ -1,3 +1,18 @@
+# [0.6.0](https://github.com/hacxy/kick/compare/v0.5.0...v0.6.0) (2026-07-24)
+
+
+### Bug Fixes
+
+* correct skills path resolution for global installation ([1ff179b](https://github.com/hacxy/kick/commit/1ff179b7c690f39dc7f111401ceb5698e0b70a1d))
+
+
+### Features
+
+* **setup:** skill 安装改用复制并支持覆盖确认 ([af1d22d](https://github.com/hacxy/kick/commit/af1d22da223fff33229a108cfbffbb0b340dc68e))
+* **template:** 添加 next-web 模板 ([aa8d446](https://github.com/hacxy/kick/commit/aa8d446d70877342d41678e122a2bffe2fe2a3f9))
+
+
+
 # [0.5.0](https://github.com/hacxy/kick/compare/v0.4.2...v0.5.0) (2026-07-17)
 
 
