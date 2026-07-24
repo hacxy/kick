@@ -20,7 +20,7 @@ Use this skill when the user wants to:
 ### Command
 
 ```bash
-npx @hacxy/kick list
+npx @hacxy/kick@latest list
 ```
 
 ### Output
@@ -44,5 +44,5 @@ fullstack:
 ### Example
 
 ```bash
-npx @hacxy/kick list
+npx @hacxy/kick@latest list
 ```

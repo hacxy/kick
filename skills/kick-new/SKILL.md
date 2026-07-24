@@ -22,13 +22,13 @@ Use this skill when the user wants to:
 Before creating a project, check if the requested template exists:
 
 ```bash
-npx @hacxy/kick list
+npx @hacxy/kick@latest list
 ```
 
 ### 2. Create Project
 
 ```bash
-npx @hacxy/kick new [template] [projectName]
+npx @hacxy/kick@latest new [template] [projectName]
 ```
 
 ### Options
@@ -39,7 +39,7 @@ npx @hacxy/kick new [template] [projectName]
 ### Example
 
 ```bash
-npx @hacxy/kick new react-web my-app
+npx @hacxy/kick@latest new react-web my-app
 ```
 
 If no template specified, interactive mode will guide you through selection.
