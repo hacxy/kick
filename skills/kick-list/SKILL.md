@@ -1,18 +1,19 @@
 ---
 name: kick-list
-description: 查看当前可用的项目模板列表
+description: List all available project templates for scaffolding new applications
 ---
 
 # Kick List
 
-查看当前可用的项目模板。
+View all available project templates.
 
 ## When to Use This Skill
 
-当用户想要：
+Use this skill when the user wants to:
 
-- 查看有哪些项目模板可用
-- 了解当前支持的模板类型
+- See what project templates are available
+- Check supported template types before creating a new project
+- Browse available scaffolding options
 
 ## Command
 

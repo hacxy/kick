@@ -1,6 +1,6 @@
 ---
 name: kick-new
-description: Create a new project using kick scaffolding CLI
+description: Create a new project from a kick template with interactive or direct mode
 ---
 
 # Kick New
