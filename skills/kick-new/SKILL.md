@@ -26,6 +26,8 @@ Before creating a project, check if the requested template exists:
 npx @hacxy/kick@latest list
 ```
 
+If the project type is unclear, list all available templates and ask the user to choose.
+
 ### 2. Create Project
 
 ```bash
