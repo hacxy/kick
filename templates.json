@@ -7,9 +7,9 @@
       "category": "web"
     },
     {
-      "name": "elysia-server",
+      "name": "elysiajs",
       "description": "轻量级 ElysiaJS 后端服务模板",
-      "repo": "hacxy/tpl-elysia-server",
+      "repo": "hacxy/tpl-elysiajs",
       "category": "server"
     },
     {
@@ -19,9 +19,9 @@
       "category": "fullstack"
     },
     {
-      "name": "next-web",
+      "name": "nextjs",
       "description": "Next.js 全栈 web 应用模板",
-      "repo": "hacxy/tpl-next-web",
+      "repo": "hacxy/tpl-nextjs",
       "category": "fullstack"
     }
   ]
