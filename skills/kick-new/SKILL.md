@@ -1,6 +1,6 @@
 ---
 name: kick-new
-description: Create a new project from a kick template with interactive or direct mode
+description: Create a new project when user wants to start, scaffold, or initialize a new application from a template
 ---
 
 # Kick New
@@ -14,6 +14,7 @@ Use this skill when the user wants to:
 - Create a new project
 - Scaffold a new application
 - Start a new project from a template
+- Initialize a new project
 
 ## How to Create a Project
 
