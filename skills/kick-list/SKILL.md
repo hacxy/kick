@@ -1,47 +1,20 @@
 ---
 name: kick-list
-description: List all available kick templates
+description: 查看当前可用的项目模板列表
 ---
 
 # Kick List
 
-List all available templates for project scaffolding.
+查看当前可用的项目模板。
 
 ## When to Use This Skill
 
-Use this skill when the user wants to:
+当用户想要：
 
-- See available project templates
-- Check what templates can be used
-- Browse template options
+- 查看有哪些项目模板可用
+- 了解当前支持的模板类型
 
-## How to List Templates
-
-### Command
-
-```bash
-npx @hacxy/kick@latest list
-```
-
-### Output
-
-The command displays templates grouped by category:
-
-```
-可用 templates (4):
-
-web:
-  react-web              React 19 + Vite + TypeScript web 应用
-
-server:
-  elysiajs               轻量级 ElysiaJS 后端服务模板
-
-fullstack:
-  react-elysia           Elysia + React 19 + Bun monorepo 全栈模板
-  nextjs                 Next.js 全栈 web 应用模板
-```
-
-### Example
+## Command
 
 ```bash
 npx @hacxy/kick@latest list
