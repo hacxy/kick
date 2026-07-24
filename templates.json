@@ -20,9 +20,9 @@
     },
     {
       "name": "next-web",
-      "description": "Next.js web 应用模板",
+      "description": "Next.js 全栈 web 应用模板",
       "repo": "hacxy/tpl-next-web",
-      "category": "web"
+      "category": "fullstack"
     }
   ]
 }
