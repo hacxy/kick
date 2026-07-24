@@ -53,7 +53,7 @@ Downloaded templates are cached to `~/.fe/cache/`. Subsequent creations of the s
 The project includes skills that can be installed to AI Agents:
 
 ```sh
-kick setup
+npx @hacxy/kick@latest setup
 ```
 
 Supported Agent platforms:
