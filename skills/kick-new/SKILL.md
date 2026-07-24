@@ -22,13 +22,13 @@ Use this skill when the user wants to:
 Before creating a project, check if the requested template exists:
 
 ```bash
-kick list
+npx @hacxy/kick list
 ```
 
 ### 2. Create Project
 
 ```bash
-kick new [template] [projectName]
+npx @hacxy/kick new [template] [projectName]
 ```
 
 ### Options
