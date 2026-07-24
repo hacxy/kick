@@ -1,3 +1,7 @@
+## [0.7.1](https://github.com/hacxy/kick/compare/v0.7.0...v0.7.1) (2026-07-24)
+
+
+
 ## [0.6.1](https://github.com/hacxy/kick/compare/v0.6.0...v0.6.1) (2026-07-24)
 
 
