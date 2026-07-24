@@ -18,19 +18,19 @@ npx @hacxy/kick@latest new
 
 ```sh
 # Interactive template selection
-kick new
+npx @hacxy/kick@latest new
 
 # Specify template
-kick new react-web
+npx @hacxy/kick@latest new react-web
 
 # Specify template and project name
-kick new react-web my-app
+npx @hacxy/kick@latest new react-web my-app
 
 # Force refresh cache
-kick new react-web --refresh
+npx @hacxy/kick@latest new react-web --refresh
 
 # List available templates
-kick list
+npx @hacxy/kick@latest list
 ```
 
 ## Templates
