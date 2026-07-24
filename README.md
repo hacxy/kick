@@ -11,7 +11,7 @@ npm i -g @hacxy/kick
 或直接使用 npx：
 
 ```sh
-npx @hacxy/kick new
+npx @hacxy/kick@latest new
 ```
 
 ## 使用
@@ -28,19 +28,39 @@ kick new react-web my-app
 
 # 强制刷新缓存
 kick new react-web --refresh
+
+# 查看可用模板
+kick list
 ```
 
 ## 模板
 
 模板索引定义在 `templates.json` 中，每个模板是一个独立的 GitHub 仓库。
 
-| 模板      | 说明                                  | 仓库                |
-| --------- | ------------------------------------- | ------------------- |
-| react-web | React 19 + Vite + TypeScript web 应用 | hacxy/tpl-react-web |
+| 模板         | 说明                                      | 仓库                   |
+| ------------ | ----------------------------------------- | ---------------------- |
+| react-web    | React 19 + Vite + TypeScript web 应用     | hacxy/tpl-react-web    |
+| elysiajs     | 轻量级 ElysiaJS 后端服务模板              | hacxy/tpl-elysiajs     |
+| react-elysia | Elysia + React 19 + Bun monorepo 全栈模板 | hacxy/tpl-react-elysia |
+| nextjs       | Next.js 全栈 web 应用模板                 | hacxy/tpl-nextjs       |
 
 ## 缓存
 
 下载的模板会缓存到 `~/.fe/cache/`，后续创建同名模板时直接使用缓存。使用 `--refresh` 强制重新下载。
+
+## Skills
+
+项目包含可安装到 AI Agent 的 skills：
+
+```sh
+kick setup
+```
+
+支持的 Agent 平台：
+
+- OpenCode
+- Claude Code
+- Hermes
 
 ## 开发
 
