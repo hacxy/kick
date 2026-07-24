@@ -1,74 +1,74 @@
 # @hacxy/kick
 
-项目模板脚手架 CLI 工具。从 GitHub 仓库拉取模板，快速创建项目。
+A project scaffolding CLI tool. Pull templates from GitHub repositories and create projects quickly.
 
-## 安装
+## Installation
 
 ```sh
 npm i -g @hacxy/kick
 ```
 
-或直接使用 npx：
+Or use directly with npx:
 
 ```sh
 npx @hacxy/kick@latest new
 ```
 
-## 使用
+## Usage
 
 ```sh
-# 交互式选择模板
+# Interactive template selection
 kick new
 
-# 指定模板
+# Specify template
 kick new react-web
 
-# 指定模板和项目名
+# Specify template and project name
 kick new react-web my-app
 
-# 强制刷新缓存
+# Force refresh cache
 kick new react-web --refresh
 
-# 查看可用模板
+# List available templates
 kick list
 ```
 
-## 模板
+## Templates
 
-模板索引定义在 `templates.json` 中，每个模板是一个独立的 GitHub 仓库。
+Template index is defined in `templates.json`, each template is a separate GitHub repository.
 
-| 模板         | 说明                                      | 仓库                   |
-| ------------ | ----------------------------------------- | ---------------------- |
-| react-web    | React 19 + Vite + TypeScript web 应用     | hacxy/tpl-react-web    |
-| elysiajs     | 轻量级 ElysiaJS 后端服务模板              | hacxy/tpl-elysiajs     |
-| react-elysia | Elysia + React 19 + Bun monorepo 全栈模板 | hacxy/tpl-react-elysia |
-| nextjs       | Next.js 全栈 web 应用模板                 | hacxy/tpl-nextjs       |
+| Template     | Description                                   | Repository             |
+| ------------ | --------------------------------------------- | ---------------------- |
+| react-web    | React 19 + Vite + TypeScript web app          | hacxy/tpl-react-web    |
+| elysiajs     | Lightweight ElysiaJS backend service template | hacxy/tpl-elysiajs     |
+| react-elysia | Elysia + React 19 + Bun monorepo fullstack    | hacxy/tpl-react-elysia |
+| nextjs       | Next.js fullstack web app template            | hacxy/tpl-nextjs       |
 
-## 缓存
+## Cache
 
-下载的模板会缓存到 `~/.fe/cache/`，后续创建同名模板时直接使用缓存。使用 `--refresh` 强制重新下载。
+Downloaded templates are cached to `~/.fe/cache/`. Subsequent creations of the same template use the cache. Use `--refresh` to force re-download.
 
 ## Skills
 
-项目包含可安装到 AI Agent 的 skills：
+The project includes skills that can be installed to AI Agents:
 
 ```sh
 kick setup
 ```
 
-支持的 Agent 平台：
+Supported Agent platforms:
 
 - OpenCode
 - Claude Code
 - Hermes
 
-## 开发
+## Development
 
 ```sh
 pnpm install
-pnpm dev          # watch 模式
-pnpm build        # 构建
-pnpm lint         # 检查
+pnpm dev          # watch mode
+pnpm build        # build
+pnpm lint         # lint
 ```
 
 ## License
