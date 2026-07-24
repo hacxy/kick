@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from 'node:fs';
-import { readdir, symlink } from 'node:fs/promises';
+import { cp, readdir } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
 import chalk from 'chalk';
@@ -51,11 +51,22 @@ async function installSkills(agent: AgentConfig, skills: string[]): Promise<void
     const target = join(agent.skillsDir, skill);
 
     if (existsSync(target)) {
-      console.log(chalk.yellow(`  跳过 ${skill} (已存在)`));
-      continue;
+      const { shouldOverwrite } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'shouldOverwrite',
+          message: `${skill} 已存在，是否覆盖？`,
+          default: false,
+        },
+      ]);
+
+      if (!shouldOverwrite) {
+        console.log(chalk.yellow(`  跳过 ${skill}`));
+        continue;
+      }
     }
 
-    await symlink(source, target);
+    await cp(source, target, { recursive: true });
     console.log(chalk.green(`  ✓ ${skill}`));
   }
 }
