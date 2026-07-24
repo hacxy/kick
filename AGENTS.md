@@ -18,3 +18,9 @@ Angular-style commit message，格式：`type(scope): subject`
 ## 代码规范
 
 - 单个文件不超过 300 行
+
+## 禁止事项
+
+- 不要自作主张地更新版本号（npm version）
+- 不要自作主张地创建 git tag
+- 不要自作主张地发布 npm 包（npm publish）
