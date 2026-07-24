@@ -1,3 +1,13 @@
+## [0.6.1](https://github.com/hacxy/kick/compare/v0.6.0...v0.6.1) (2026-07-24)
+
+
+### Bug Fixes
+
+* **skills:** 修正 kick-new 示例命令 ([30f8e46](https://github.com/hacxy/kick/commit/30f8e46ecd04566e9fabf07320f8b9324afedd8e))
+* **template:** next-web 分类改为 fullstack ([db19c89](https://github.com/hacxy/kick/commit/db19c899412cae82137187e8619dd61750b649dc))
+
+
+
 # [0.6.0](https://github.com/hacxy/kick/compare/v0.5.0...v0.6.0) (2026-07-24)
 
 
