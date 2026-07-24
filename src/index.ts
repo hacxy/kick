@@ -10,7 +10,6 @@ function bootstrap() {
 
   cli.command('[template] [projectName]', 'Create a new project')
     .option('-t, --template <template>', 'Specify template name')
-    .option('--refresh', 'Force refresh cache')
     .action((template: string | undefined, projectName: string | undefined, options: any) => {
       if (template && !options.template) {
         options.template = template;
@@ -20,7 +19,6 @@ function bootstrap() {
 
   cli.command('new [template] [projectName]', 'Create a new project')
     .option('-t, --template <template>', 'Specify template name')
-    .option('--refresh', 'Force refresh cache')
     .action((template: string | undefined, projectName: string | undefined, options: any) => {
       if (template && !options.template) {
         options.template = template;

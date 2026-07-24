@@ -4,14 +4,12 @@ import { resolve } from 'node:path';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import ora from 'ora';
-import { clearTemplateCache, copyFromCache, hasCache, saveToCache } from '../services/cache.js';
 import { downloadTemplate } from '../services/download.js';
 import { fetchTemplates } from '../services/template.js';
 import { emptyDir, getVisibleProjectName, isDirEmpty, renameInDir, resolveProjectPath, updatePackageName } from '../utils.js';
 
 interface NewOptions {
   template?: string
-  refresh?: boolean
 }
 
 async function selectTemplate(templates: Template[]): Promise<Template> {
@@ -106,29 +104,11 @@ async function ensureDestEmpty(dest: string, projectName: string): Promise<void>
   }
 }
 
-async function setupTemplate(template: Template, dest: string, refresh: boolean): Promise<void> {
-  // Try cache first
-  if (!refresh && hasCache(template.name)) {
-    const spinner = ora('Copying template from cache...').start();
-    try {
-      await copyFromCache(template.name, dest);
-      spinner.succeed('Template copied successfully');
-      return;
-    }
-    catch {
-      spinner.warn('Cache copy failed, downloading again');
-      await clearTemplateCache(template.name);
-    }
-  }
-
-  // Download from remote
+async function setupTemplate(template: Template, dest: string): Promise<void> {
   const spinner = ora(`Downloading template ${chalk.cyan(template.name)}...`).start();
   try {
     await downloadTemplate(template.repo, dest);
     spinner.succeed('Template downloaded successfully');
-
-    // Save to cache
-    await saveToCache(template.name, dest);
   }
   catch (err: any) {
     spinner.fail(`Template download failed: ${err.message}`);
@@ -161,7 +141,7 @@ export async function createProject(projectName: string | undefined, options: Ne
   const dest = resolveProjectPath(name);
 
   await ensureDestEmpty(dest, name);
-  await setupTemplate(template, dest, options.refresh || false);
+  await setupTemplate(template, dest);
   await renameSpecialFiles(dest);
   await updatePackageName(dest, visibleName);
 
