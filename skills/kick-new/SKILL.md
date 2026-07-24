@@ -17,7 +17,15 @@ Use this skill when the user wants to:
 
 ## How to Create a Project
 
-### Basic Usage
+### 1. Check Available Templates First
+
+Before creating a project, check if the requested template exists:
+
+```bash
+kick list
+```
+
+### 2. Create Project
 
 ```bash
 kick new [template] [projectName]
@@ -28,54 +36,10 @@ kick new [template] [projectName]
 - `-t, --template <template>` - Specify template name
 - `--refresh` - Force refresh template cache
 
-### Interactive Mode
-
-Run `kick new` without arguments to enter interactive mode:
-
-```bash
-kick new
-```
-
-The CLI will prompt you to:
-
-1. Select a category (web, server, fullstack)
-2. Select a template
-3. Enter project name
-
-### Direct Mode
-
-Specify template and project name directly:
+### Example
 
 ```bash
 kick new react-web my-app
 ```
 
-Or using options:
-
-```bash
-kick new -t react-web my-app
-```
-
-### Available Templates
-
-Use `kick list` to see all available templates.
-
-### Examples
-
-Create a React web project:
-
-```bash
-kick new react-web my-react-app
-```
-
-Create with specific template option:
-
-```bash
-kick new -t elysia-server my-api
-```
-
-Force refresh cache and create:
-
-```bash
-kick new react-web my-app --refresh
-```
+If no template specified, interactive mode will guide you through selection.
