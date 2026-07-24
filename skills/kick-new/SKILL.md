@@ -39,7 +39,7 @@ npx @hacxy/kick new [template] [projectName]
 ### Example
 
 ```bash
-kick new react-web my-app
+npx @hacxy/kick new react-web my-app
 ```
 
 If no template specified, interactive mode will guide you through selection.
