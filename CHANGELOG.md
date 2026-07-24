@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/hacxy/kick/compare/v0.7.1...v0.7.2) (2026-07-24)
+
+
+### Features
+
+* 移除缓存逻辑，每次都拉取最新模板代码 ([53e44c3](https://github.com/hacxy/kick/commit/53e44c35f7697c3a71829a18b44053bc16e77588))
+
+
+
 ## [0.7.1](https://github.com/hacxy/kick/compare/v0.7.0...v0.7.1) (2026-07-24)
 
 
