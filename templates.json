@@ -23,6 +23,12 @@
       "description": "Next.js 全栈 web 应用模板",
       "repo": "hacxy/tpl-nextjs",
       "category": "fullstack"
+    },
+    {
+      "name": "pi-extentions",
+      "description": "Pi Agent 扩展项目模板",
+      "repo": "hacxy/tpl-pi-extension",
+      "category": "pi"
     }
   ]
 }
