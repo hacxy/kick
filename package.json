@@ -29,9 +29,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "release": "changeset publish",
+    "release": "./scripts/release.sh",
     "prepare": "husky"
   },
   "dependencies": {
