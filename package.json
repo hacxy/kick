@@ -16,59 +16,48 @@
     "template"
   ],
   "bin": {
-    "kick": "cli/index.js"
+    "kick": "bin/index.js"
   },
   "files": [
-    "cli",
+    "bin",
     "templates"
   ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "cli:dev": "cd cli && rolldown -c rolldown.config.ts --watch",
-    "cli:build": "cd cli && rolldown -c rolldown.config.ts",
-    "cli:test": "cd cli && vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky"
   },
   "dependencies": {
-    "cac": "^7.0.0",
     "chalk": "^6.0.0",
-    "degit": "^3.6.6",
     "inquirer": "^14.0.2",
-    "lucide-react": "^1.28.0",
-    "ora": "^9.4.1",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.2",
-    "undici": "^8.9.0"
+    "ora": "^9.4.1"
   },
   "devDependencies": {
     "@hacxy/eslint-config": "workspace:*",
     "@hacxy/prettier-config": "workspace:*",
     "@hacxy/tsconfig": "workspace:*",
     "@tailwindcss/vite": "^4.0.0",
-    "@types/degit": "^2.8.6",
-    "@types/inquirer": "^9.0.10",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
-    "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^9.32.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^7.0.0",
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
+    "lucide-react": "^1.28.0",
     "prettier": "^3.0.0",
-    "rolldown": "^1.2.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2",
     "tailwindcss": "^4.0.0",
     "typescript": "~6.0.2",
-    "vite": "^8.2.0",
-    "vitest": "^4.1.10"
+    "vite": "^8.2.0"
   },
   "publishConfig": {
     "access": "public"

@@ -27,5 +27,6 @@
     "prettier": "^3",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "Next.js 15 + TypeScript + Tailwind CSS"
 }

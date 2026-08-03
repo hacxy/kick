@@ -24,5 +24,6 @@
     "unocss": "latest",
     "vite": "^8.2.0",
     "vue-tsc": "^3.3.8"
-  }
+  },
+  "description": "Vue 3 + Vite + TypeScript + UnoCSS"
 }
