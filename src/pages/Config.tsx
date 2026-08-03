@@ -56,18 +56,15 @@ const configs: Record<string, { title: string; options: ConfigOption[] }> = {
 }
 
 const usageExamples: Record<string, string> = {
-  tsconfig: `// tsconfig.json
-{
+  tsconfig: `{
   "extends": "@hacxy/tsconfig/react.json"
 }`,
-  eslint: `// eslint.config.js
-import { hacxy } from '@hacxy/eslint-config'
+  eslint: `import { hacxy } from '@hacxy/eslint-config'
 
 export default hacxy({
   react: true
 })`,
-  prettier: `// .prettierrc
-"@hacxy/prettier-config"`,
+  prettier: `"@hacxy/prettier-config"`,
 }
 
 export function Config() {
@@ -87,20 +84,41 @@ export function Config() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">配置查看</h1>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {/* Header */}
+      <div>
+        <h1
+          style={{
+            fontSize: '1.875rem',
+            fontWeight: 'bold',
+            marginBottom: '0.5rem',
+            fontFamily: "'JetBrains Mono', monospace",
+            color: 'var(--color-text)',
+          }}
+        >
+          配置查看
+        </h1>
+        <p style={{ color: 'var(--color-text-muted)' }}>查看共享配置包的详细配置</p>
+      </div>
 
       {/* Tabs */}
-      <div className="flex gap-2">
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
         {Object.entries(configs).map(([key, config]) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === key
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
-            }`}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              fontFamily: "'JetBrains Mono', monospace",
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              background: activeTab === key ? 'var(--color-accent)' : 'var(--color-bg-elevated)',
+              color: activeTab === key ? 'var(--color-bg)' : 'var(--color-text-muted)',
+              border: activeTab === key ? 'none' : '1px solid var(--color-border)',
+            }}
           >
             {config.title}
           </button>
@@ -108,41 +126,106 @@ export function Config() {
       </div>
 
       {/* Config Table */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <table className="w-full">
+      <div className="card" style={{ overflow: 'hidden' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <th className="text-left px-6 py-3 text-sm font-medium text-gray-600">配置项</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-gray-600">值</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-gray-600">说明</th>
-              <th className="w-12 px-6 py-3"></th>
+            <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
+              <th
+                style={{
+                  textAlign: 'left',
+                  padding: '1rem 1.5rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--color-text-muted)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                配置项
+              </th>
+              <th
+                style={{
+                  textAlign: 'left',
+                  padding: '1rem 1.5rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--color-text-muted)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                值
+              </th>
+              <th
+                style={{
+                  textAlign: 'left',
+                  padding: '1rem 1.5rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--color-text-muted)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                说明
+              </th>
+              <th style={{ width: '3rem', padding: '1rem 1.5rem' }}></th>
             </tr>
           </thead>
           <tbody>
             {currentConfig.options.map((option) => (
-              <tr key={option.key} className="border-b border-gray-100 last:border-0">
-                <td className="px-6 py-4">
-                  <code className="text-sm bg-gray-100 px-2 py-1 rounded text-blue-600">
+              <tr key={option.key} style={{ borderBottom: '1px solid var(--color-border)' }}>
+                <td style={{ padding: '1rem 1.5rem' }}>
+                  <code
+                    style={{
+                      fontSize: '0.875rem',
+                      padding: '0.25rem 0.5rem',
+                      borderRadius: '0.25rem',
+                      background: 'var(--color-bg)',
+                      color: 'var(--color-accent)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
                     {option.key}
                   </code>
                 </td>
-                <td className="px-6 py-4">
-                  <code className="text-sm bg-green-50 px-2 py-1 rounded text-green-700">
+                <td style={{ padding: '1rem 1.5rem' }}>
+                  <code
+                    style={{
+                      fontSize: '0.875rem',
+                      padding: '0.25rem 0.5rem',
+                      borderRadius: '0.25rem',
+                      background: 'rgba(107, 92, 231, 0.1)',
+                      color: '#A78BFA',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
                     {option.value}
                   </code>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600">{option.description}</td>
-                <td className="px-6 py-4">
+                <td
+                  style={{
+                    padding: '1rem 1.5rem',
+                    fontSize: '0.875rem',
+                    color: 'var(--color-text-muted)',
+                  }}
+                >
+                  {option.description}
+                </td>
+                <td style={{ padding: '1rem 1.5rem' }}>
                   <button
                     onClick={() => handleCopy(option.key, option.value)}
-                    className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                    style={{
+                      padding: '0.25rem',
+                      cursor: 'pointer',
+                      transition: 'color 0.2s',
+                      color:
+                        copiedKey === option.key
+                          ? 'var(--color-accent)'
+                          : 'var(--color-text-muted)',
+                      background: 'transparent',
+                      border: 'none',
+                    }}
                     title="复制"
                   >
-                    {copiedKey === option.key ? (
-                      <Check size={16} className="text-green-500" />
-                    ) : (
-                      <Copy size={16} />
-                    )}
+                    {copiedKey === option.key ? <Check size={16} /> : <Copy size={16} />}
                   </button>
                 </td>
               </tr>
@@ -152,11 +235,31 @@ export function Config() {
       </div>
 
       {/* Usage Example */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">使用方式</h3>
-        <pre className="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto">
-          {usageExamples[activeTab]}
-        </pre>
+      <div className="card" style={{ padding: '1.5rem' }}>
+        <h3
+          style={{
+            fontSize: '1.125rem',
+            fontWeight: 600,
+            marginBottom: '1rem',
+            fontFamily: "'JetBrains Mono', monospace",
+            color: 'var(--color-text)',
+          }}
+        >
+          使用方式
+        </h3>
+        <div className="terminal-block">
+          <div className="terminal-header">
+            <div className="terminal-dot terminal-dot-red"></div>
+            <div className="terminal-dot terminal-dot-yellow"></div>
+            <div className="terminal-dot terminal-dot-green"></div>
+          </div>
+          <pre
+            className="terminal-content"
+            style={{ overflow: 'auto', fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            {usageExamples[activeTab]}
+          </pre>
+        </div>
       </div>
     </div>
   )

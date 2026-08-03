@@ -1,4 +1,4 @@
-import { Play, Code } from 'lucide-react'
+import { Copy, Check, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 
 interface Template {
@@ -54,13 +54,6 @@ const categoryLabels: Record<string, string> = {
   others: '其他',
 }
 
-const categoryColors: Record<string, string> = {
-  frontend: 'bg-blue-100 text-blue-700',
-  fullstack: 'bg-purple-100 text-purple-700',
-  backend: 'bg-green-100 text-green-700',
-  others: 'bg-gray-100 text-gray-700',
-}
-
 export function Templates() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null)
   const [copied, setCopied] = useState(false)
@@ -72,75 +65,182 @@ export function Templates() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">模板展示</h1>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {/* Header */}
+      <div>
+        <h1
+          style={{
+            fontSize: '1.875rem',
+            fontWeight: 'bold',
+            marginBottom: '0.5rem',
+            fontFamily: "'JetBrains Mono', monospace",
+            color: 'var(--color-text)',
+          }}
+        >
+          模板展示
+        </h1>
+        <p style={{ color: 'var(--color-text-muted)' }}>选择模板创建项目</p>
+      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
         {/* Template List */}
-        <div className="lg:col-span-2 space-y-4">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {templates.map((template) => (
             <div
               key={template.name}
-              className={`bg-white rounded-xl border p-6 cursor-pointer transition-all ${
-                selectedTemplate?.name === template.name
-                  ? 'border-blue-500 shadow-md'
-                  : 'border-gray-200 hover:border-blue-300'
-              }`}
+              className="card"
+              style={{
+                padding: '1.5rem',
+                cursor: 'pointer',
+                borderColor:
+                  selectedTemplate?.name === template.name
+                    ? 'var(--color-accent)'
+                    : 'var(--color-border)',
+              }}
               onClick={() => setSelectedTemplate(template)}
             >
-              <div className="flex items-start justify-between">
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{template.name}</h3>
-                    <span
-                      className={`px-2 py-1 text-xs rounded ${categoryColors[template.category]}`}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    <h3
+                      style={{
+                        fontSize: '1.125rem',
+                        fontWeight: 600,
+                        fontFamily: "'JetBrains Mono', monospace",
+                        color: 'var(--color-text)',
+                      }}
                     >
+                      {template.name}
+                    </h3>
+                    <span className={`tag tag-${template.category}`}>
                       {categoryLabels[template.category]}
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-3">{template.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p
+                    style={{
+                      fontSize: '0.875rem',
+                      marginBottom: '1rem',
+                      color: 'var(--color-text-muted)',
+                    }}
+                  >
+                    {template.description}
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {template.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+                        style={{
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '0.25rem',
+                          fontSize: '0.75rem',
+                          background: 'var(--color-bg)',
+                          color: 'var(--color-text-muted)',
+                          fontFamily: "'JetBrains Mono', monospace",
+                        }}
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
+                <ArrowRight
+                  size={20}
+                  style={{
+                    color:
+                      selectedTemplate?.name === template.name
+                        ? 'var(--color-accent)'
+                        : 'var(--color-text-muted)',
+                    transition: 'color 0.2s',
+                  }}
+                />
               </div>
             </div>
           ))}
         </div>
 
         {/* Template Detail */}
-        <div className="lg:col-span-1">
+        <div>
           {selectedTemplate ? (
-            <div className="bg-white rounded-xl border border-gray-200 p-6 sticky top-24">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="card" style={{ padding: '1.5rem', position: 'sticky', top: '6rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 600,
+                  marginBottom: '1.5rem',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  color: 'var(--color-text)',
+                }}
+              >
                 {selectedTemplate.name} 模板
               </h3>
 
-              <div className="space-y-4">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">分类</p>
-                  <p className="text-gray-900">{categoryLabels[selectedTemplate.category]}</p>
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      marginBottom: '0.5rem',
+                      color: 'var(--color-text-muted)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    分类
+                  </p>
+                  <p style={{ color: 'var(--color-text)' }}>
+                    {categoryLabels[selectedTemplate.category]}
+                  </p>
                 </div>
 
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">描述</p>
-                  <p className="text-gray-900">{selectedTemplate.description}</p>
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      marginBottom: '0.5rem',
+                      color: 'var(--color-text-muted)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    描述
+                  </p>
+                  <p style={{ color: 'var(--color-text)' }}>{selectedTemplate.description}</p>
                 </div>
 
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">技术栈</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      marginBottom: '0.5rem',
+                      color: 'var(--color-text-muted)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    技术栈
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {selectedTemplate.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+                        style={{
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '0.25rem',
+                          fontSize: '0.75rem',
+                          background: 'rgba(196, 248, 42, 0.1)',
+                          color: 'var(--color-accent)',
+                          fontFamily: "'JetBrains Mono', monospace",
+                        }}
                       >
                         {tech}
                       </span>
@@ -149,39 +249,72 @@ export function Templates() {
                 </div>
 
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">创建命令</p>
-                  <div className="flex items-center gap-2">
-                    <code className="flex-1 bg-gray-900 text-green-400 px-3 py-2 rounded text-sm font-mono">
-                      {selectedTemplate.command}
-                    </code>
-                    <button
-                      onClick={() => handleCopy(selectedTemplate.command)}
-                      className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
-                      title="复制"
-                    >
-                      {copied ? (
-                        <span className="text-green-500 text-sm">已复制</span>
-                      ) : (
-                        <Code size={18} />
-                      )}
-                    </button>
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      marginBottom: '0.5rem',
+                      color: 'var(--color-text-muted)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    创建命令
+                  </p>
+                  <div className="terminal-block">
+                    <div className="terminal-header">
+                      <div className="terminal-dot terminal-dot-red"></div>
+                      <div className="terminal-dot terminal-dot-yellow"></div>
+                      <div className="terminal-dot terminal-dot-green"></div>
+                    </div>
+                    <div className="terminal-content" style={{ fontSize: '0.875rem' }}>
+                      <span className="code-key">{selectedTemplate.command}</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-200">
-                  <button
-                    onClick={() => handleCopy(selectedTemplate.command)}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                  >
-                    <Play size={18} />
-                    复制命令
-                  </button>
-                </div>
+                <button
+                  onClick={() => handleCopy(selectedTemplate.command)}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '0.5rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-bg)',
+                    border: 'none',
+                  }}
+                >
+                  {copied ? (
+                    <>
+                      <Check size={16} />
+                      已复制
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={16} />
+                      复制命令
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           ) : (
-            <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 text-center text-gray-500">
-              选择一个模板查看详情
+            <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+              <p
+                style={{
+                  color: 'var(--color-text-muted)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                选择一个模板查看详情
+              </p>
             </div>
           )}
         </div>
