@@ -7,7 +7,7 @@ import {
   getTemplateCacheDir,
   hasCache,
   saveToCache,
-} from '../../src/services/cache.js'
+} from '../../services/cache.js'
 
 // Mock node:fs
 vi.mock('node:fs', () => ({

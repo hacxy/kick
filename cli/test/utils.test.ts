@@ -8,7 +8,7 @@ import {
   renameInDir,
   resolveProjectPath,
   updatePackageName,
-} from '../src/utils.js'
+} from '../utils.js'
 
 // Mock node:fs
 vi.mock('node:fs', () => ({

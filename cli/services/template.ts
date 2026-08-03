@@ -43,6 +43,6 @@ export async function fetchTemplates(): Promise<Template[]> {
   if (!res.ok) {
     throw new Error(`Failed to fetch template index: ${res.status} ${res.statusText}`)
   }
-  const data: TemplateIndex = await res.json()
+  const data = (await res.json()) as TemplateIndex
   return data.templates
 }

@@ -1,0 +1,10 @@
+{
+  "extends": "@hacxy/tsconfig/node.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["./**/*.ts", "./**/*.test.ts"]
+}

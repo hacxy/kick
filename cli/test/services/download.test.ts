@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { downloadTemplate, getRepoIdentifier } from '../../src/services/download.js'
+import { downloadTemplate, getRepoIdentifier } from '../../services/download.js'
 
 // Mock degit
 vi.mock('degit', () => {

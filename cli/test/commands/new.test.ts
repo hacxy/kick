@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { createProject } from '../../src/commands/new.js'
+import { createProject } from '../../commands/new.js'
 
 // Mock dependencies
 vi.mock('chalk', () => ({
@@ -30,11 +30,11 @@ vi.mock('ora', () => ({
   }),
 }))
 
-vi.mock('../../src/services/download.js', () => ({
+vi.mock('../../services/download.js', () => ({
   downloadTemplate: vi.fn(),
 }))
 
-vi.mock('../../src/services/template.js', () => ({
+vi.mock('../../services/template.js', () => ({
   fetchTemplates: vi.fn(),
 }))
 
@@ -42,7 +42,7 @@ vi.mock('node:fs', () => ({
   existsSync: vi.fn(),
 }))
 
-vi.mock('../../src/utils.js', () => ({
+vi.mock('../../utils.js', () => ({
   resolveProjectPath: vi.fn(),
   getVisibleProjectName: vi.fn(),
   isDirEmpty: vi.fn(),
@@ -66,7 +66,7 @@ describe('createProject', () => {
       },
     ]
 
-    const { fetchTemplates } = await import('../../src/services/template.js')
+    const { fetchTemplates } = await import('../../services/template.js')
     vi.mocked(fetchTemplates).mockResolvedValue(mockTemplates)
 
     const inquirer = await import('inquirer')
@@ -84,14 +84,14 @@ describe('createProject', () => {
       isDirEmpty,
       renameInDir,
       updatePackageName,
-    } = await import('../../src/utils.js')
+    } = await import('../../utils.js')
     vi.mocked(resolveProjectPath).mockReturnValue('/test/my-project')
     vi.mocked(getVisibleProjectName).mockReturnValue('my-project')
     vi.mocked(isDirEmpty).mockResolvedValue(true)
     vi.mocked(renameInDir).mockResolvedValue(void 0)
     vi.mocked(updatePackageName).mockResolvedValue(void 0)
 
-    const { downloadTemplate } = await import('../../src/services/download.js')
+    const { downloadTemplate } = await import('../../services/download.js')
     vi.mocked(downloadTemplate).mockResolvedValue(void 0)
 
     await createProject(void 0, {})
@@ -116,7 +116,7 @@ describe('createProject', () => {
       },
     ]
 
-    const { fetchTemplates } = await import('../../src/services/template.js')
+    const { fetchTemplates } = await import('../../services/template.js')
     vi.mocked(fetchTemplates).mockResolvedValue(mockTemplates)
 
     const inquirer = await import('inquirer')
@@ -128,14 +128,14 @@ describe('createProject', () => {
       isDirEmpty,
       renameInDir,
       updatePackageName,
-    } = await import('../../src/utils.js')
+    } = await import('../../utils.js')
     vi.mocked(resolveProjectPath).mockReturnValue('/test/my-project')
     vi.mocked(getVisibleProjectName).mockReturnValue('my-project')
     vi.mocked(isDirEmpty).mockResolvedValue(true)
     vi.mocked(renameInDir).mockResolvedValue(void 0)
     vi.mocked(updatePackageName).mockResolvedValue(void 0)
 
-    const { downloadTemplate } = await import('../../src/services/download.js')
+    const { downloadTemplate } = await import('../../services/download.js')
     vi.mocked(downloadTemplate).mockResolvedValue(void 0)
 
     await createProject(void 0, { template: 'template1' })
@@ -155,7 +155,7 @@ describe('createProject', () => {
       },
     ]
 
-    const { fetchTemplates } = await import('../../src/services/template.js')
+    const { fetchTemplates } = await import('../../services/template.js')
     vi.mocked(fetchTemplates).mockResolvedValue(mockTemplates)
 
     const inquirer = await import('inquirer')
@@ -169,7 +169,7 @@ describe('createProject', () => {
   })
 
   it('should exit if fetch templates fails', async () => {
-    const { fetchTemplates } = await import('../../src/services/template.js')
+    const { fetchTemplates } = await import('../../services/template.js')
     vi.mocked(fetchTemplates).mockRejectedValue(new Error('Network error'))
 
     const mockExit = vi.spyOn(process, 'exit').mockImplementation(() => void 0 as never)

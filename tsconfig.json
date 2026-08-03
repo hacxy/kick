@@ -1,6 +1,8 @@
 {
   "extends": "@hacxy/tsconfig/react.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   }
 }

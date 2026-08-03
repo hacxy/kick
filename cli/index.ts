@@ -1,9 +1,8 @@
 import { cac } from 'cac'
 import chalk from 'chalk'
 
-import pkg from '../package.json'
+import pkg from '../package.json' with { type: 'json' }
 import { createProject } from './commands/new.js'
-import { setupSkills } from './commands/setup.js'
 import { fetchTemplates } from './services/template.js'
 
 function bootstrap() {
@@ -51,8 +50,6 @@ function bootstrap() {
       process.exit(1)
     }
   })
-
-  cli.command('setup', 'Install skills to AI Agent').action(setupSkills)
 
   cli.version(pkg.version)
   cli.help()

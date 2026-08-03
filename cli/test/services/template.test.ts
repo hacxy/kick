@@ -1,7 +1,7 @@
 import { fetch as undiciFetch } from 'undici'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchTemplates } from '../../src/services/template.js'
+import { fetchTemplates } from '../../services/template.js'
 
 vi.mock('undici', () => ({
   ProxyAgent: vi.fn(),

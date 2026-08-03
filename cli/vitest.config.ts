@@ -8,8 +8,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['src/**/*.ts'],
-      exclude: ['src/**/*.d.ts', 'src/**/*.test.ts', 'src/**/*.spec.ts'],
+      include: ['commands/**/*.ts', 'services/**/*.ts', 'utils.ts', 'index.ts'],
+      exclude: ['**/*.d.ts', '**/*.test.ts', '**/*.spec.ts', 'test/**'],
     },
   },
 })

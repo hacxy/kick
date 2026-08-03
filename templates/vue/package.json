@@ -1,0 +1,28 @@
+{
+  "name": "@hacxy/tpl-vue",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "vue": "^3.5.40"
+  },
+  "devDependencies": {
+    "@hacxy/eslint-config": "workspace:*",
+    "@hacxy/prettier-config": "workspace:*",
+    "@hacxy/tsconfig": "workspace:*",
+    "@unocss/vite": "latest",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "typescript": "~6.0.2",
+    "unocss": "latest",
+    "vite": "^8.2.0",
+    "vue-tsc": "^3.3.8"
+  }
+}
