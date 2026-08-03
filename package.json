@@ -1,6 +1,6 @@
 {
   "name": "@hacxy/kick",
-  "version": "0.9.1",
+  "version": "0.5.6",
   "type": "module",
   "description": "A project scaffolding CLI tool",
   "author": {
