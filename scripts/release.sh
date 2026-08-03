@@ -4,7 +4,7 @@
 # 用法: ./scripts/release.sh [patch|minor|major]
 #
 # 此脚本只负责：
-# 1. 更新版本号
+# 1. 更新所有包的版本号
 # 2. 提交并打 tag
 # 3. 推送到 GitHub
 #
@@ -44,10 +44,14 @@ for pkg in tsconfig prettier-config eslint-config; do
   cd ../..
 done
 
-# 4. 更新 CLI 版本（使用 eslint-config 的版本作为参考）
-CLI_VERSION=$(node -p "require('./shared/eslint-config/package.json').version")
-npm version "$CLI_VERSION" --no-git-tag-version
+# 4. 更新 CLI 版本（独立版本管理）
+echo ""
+echo "📦 Updating CLI version..."
+cd .
+npm version "$VERSION_TYPE" --no-git-tag-version
+CLI_VERSION=$(node -p "require('./package.json').version")
 echo "  ✅ @hacxy/kick → $CLI_VERSION"
+cd .
 
 # 5. 提交版本更新
 echo ""
@@ -68,9 +72,9 @@ echo ""
 echo "✅ Version v$CLI_VERSION tagged and pushed!"
 echo ""
 echo "GitHub Actions will now automatically publish:"
-echo "  - @hacxy/tsconfig@$CLI_VERSION"
-echo "  - @hacxy/prettier-config@$CLI_VERSION"
-echo "  - @hacxy/eslint-config@$CLI_VERSION"
+echo "  - @hacxy/tsconfig"
+echo "  - @hacxy/prettier-config"
+echo "  - @hacxy/eslint-config"
 echo "  - @hacxy/kick@$CLI_VERSION"
 echo ""
 echo "Check progress at: https://github.com/hacxy/kick/actions"
