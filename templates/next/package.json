@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.2.12",
@@ -24,6 +25,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
     "prettier": "^3",
     "tailwindcss": "^4",
     "typescript": "^5"

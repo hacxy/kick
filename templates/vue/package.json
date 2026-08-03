@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "vue": "^3.5.40"
@@ -19,6 +20,10 @@
     "@hacxy/prettier-config": "workspace:*",
     "@hacxy/tsconfig": "workspace:*",
     "@unocss/vite": "latest",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "typescript": "~6.0.2",
     "unocss": "latest",
