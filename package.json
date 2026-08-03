@@ -1,8 +1,7 @@
 {
   "name": "@hacxy/kick",
+  "version": "0.8.0",
   "type": "module",
-  "version": "0.7.2",
-  "packageManager": "pnpm@10.12.3",
   "description": "A project scaffolding CLI tool",
   "author": {
     "name": "Hacxy",
@@ -17,57 +16,56 @@
     "template"
   ],
   "bin": {
-    "kick": "index.js"
+    "kick": "cli/index.js"
   },
   "files": [
-    "dist",
-    "skills"
+    "cli",
+    "templates"
   ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cli:dev": "cd cli && tsdown --watch",
+    "cli:build": "cd cli && tsdown --minify",
+    "cli:test": "cd cli && vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@hacxy/eslint-config": "workspace:*",
+    "@hacxy/prettier-config": "workspace:*",
+    "@hacxy/tsconfig": "workspace:*",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "dev": "tsdown --watch",
-    "build": "tsdown --minify",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:staged": "eslint --fix",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "cz": "czg",
-    "release": "bump",
-    "prepare": "simple-git-hooks"
-  },
-  "dependencies": {
-    "degit": "^3.6.0",
-    "undici": "^8.7.0"
-  },
-  "devDependencies": {
-    "@hacxy/bump": "^0.4.0",
-    "@hacxy/eslint-config": "^0.4.1",
-    "@hacxy/tsconfig": "^0.1.0",
-    "@types/node": "^26.1.1",
-    "@vitest/coverage-v8": "^4.1.10",
-    "cac": "^6.7.14",
-    "chalk": "^5.4.1",
-    "czg": "^1.12.0",
-    "eslint": "^9.32.0",
-    "inquirer": "^12.9.0",
-    "lint-staged": "^16.1.2",
-    "ora": "^8.2.0",
-    "simple-git-hooks": "^2.13.0",
-    "tsdown": "^0.13.0",
-    "typescript": "^5.8.3",
-    "vitest": "^4.1.10"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "node scripts/commit-msg.mjs"
-  },
   "lint-staged": {
-    "*": [
-      "npm run lint:staged"
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,css}": [
+      "prettier --write"
     ]
   }
 }

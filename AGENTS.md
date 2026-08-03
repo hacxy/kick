@@ -1,26 +1,35 @@
 # AGENTS.md
 
-## 模板系统
+## 项目概述
 
-- 模板仓库命名规则：`hacxy/tpl-{name}`（如 `hacxy/tpl-react-web`）
-- 模板索引文件：`templates.json` 存放在本仓库根目录
-- 索引获取地址：`https://raw.githubusercontent.com/hacxy/kick/main/templates.json`
-- 新增模板：只需在 `templates.json` 中添加条目并创建对应的 `hacxy/tpl-{name}` 仓库
+这是一个项目脚手架 CLI 工具，采用 monorepo 结构。
 
-## Commit 规范
+**核心设计理念**：
 
-Angular-style commit message，格式：`type(scope): subject`
+- 模板是一次性脚手架，创建后与 CLI 无关
+- 基础设施（ESLint、Prettier、TypeScript 配置）通过 `@hacxy/*` npm 包持续更新
+- 用户通过 `pnpm update @hacxy/*` 更新配置，而不是同步模板
 
-有效 type：`feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types`
+## 开发规范
 
-详见 `.github/COMMIT_CONVENTION.md`
+### 添加新模板
 
-## 代码规范
+1. 在 `packages/cli/templates/` 下创建目录
+2. 模板的 `package.json` 中：
+   - `version` 固定为 `"0.0.0"`
+   - `devDependencies` 引用 `@hacxy/*` 配置包
+3. 配置文件使用 `extends` 继承共享配置：
+   - `eslint.config.js` → `export { default } from '@hacxy/eslint-config'`
+   - `tsconfig.json` → `"extends": "@hacxy/tsconfig/react.json"` 或 `node.json`
 
-- 单个文件不超过 300 行
+## 项目结构
 
-## 禁止事项
+### CLI 包结构
 
-- 不要自作主张地更新版本号（npm version）
-- 不要自作主张地创建 git tag
-- 不要自作主张地发布 npm 包（npm publish）
+`@hacxy/kick` npm 包包含：
+
+- `dist/` - CLI 代码
+- `templates/` - 所有模板文件
+- `index.js` - bin 入口
+
+用户使用 `npx @hacxy/kick new` 时，模板从包内复制，不需要联网下载。

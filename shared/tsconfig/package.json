@@ -1,0 +1,29 @@
+{
+  "name": "@hacxy/tsconfig",
+  "version": "1.0.0",
+  "description": "Shared TypeScript configuration for hacxy projects",
+  "author": {
+    "name": "Hacxy",
+    "email": "hacxy.js@outlook.com",
+    "url": "https://hacxy.cn"
+  },
+  "license": "MIT",
+  "exports": {
+    "./base.json": "./configs/base.json",
+    "./node.json": "./configs/node.json",
+    "./react.json": "./configs/react.json",
+    "./vue.json": "./configs/vue.json",
+    "./lib.json": "./configs/lib.json"
+  },
+  "files": [
+    "configs"
+  ],
+  "keywords": [
+    "typescript",
+    "config",
+    "hacxy"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

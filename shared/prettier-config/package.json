@@ -1,0 +1,23 @@
+{
+  "name": "@hacxy/prettier-config",
+  "version": "1.0.0",
+  "description": "Shared Prettier configuration for hacxy projects",
+  "author": {
+    "name": "Hacxy",
+    "email": "hacxy.js@outlook.com",
+    "url": "https://hacxy.cn"
+  },
+  "license": "MIT",
+  "main": "index.json",
+  "files": [
+    "index.json"
+  ],
+  "keywords": [
+    "prettier",
+    "config",
+    "hacxy"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,6 @@
+packages:
+  - 'shared/*'
+  - 'templates/*'
+  - 'web'
+allowBuilds:
+  simple-git-hooks: true
