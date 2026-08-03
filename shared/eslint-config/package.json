@@ -1,6 +1,6 @@
 {
   "name": "@hacxy/eslint-config",
-  "version": "1.0.0",
+  "version": "0.5.5",
   "type": "module",
   "description": "Shared ESLint configuration for hacxy projects",
   "author": {

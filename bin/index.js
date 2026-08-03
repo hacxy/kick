@@ -90,6 +90,49 @@ async function copyDir(src, dest) {
   }
 }
 
+// 获取 shared 包版本
+function getSharedPackageVersion(packageName) {
+  const pkgPath = join(__dirname, '..', 'shared', packageName, 'package.json')
+  try {
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'))
+    return pkg.version
+  } catch {
+    return '0.0.0'
+  }
+}
+
+// 替换 workspace:* 为实际版本
+function replaceWorkspaceVersions(dir) {
+  const pkgPath = join(dir, 'package.json')
+  if (!existsSync(pkgPath)) return
+
+  try {
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'))
+
+    const versions = {
+      '@hacxy/tsconfig': getSharedPackageVersion('tsconfig'),
+      '@hacxy/eslint-config': getSharedPackageVersion('eslint-config'),
+      '@hacxy/prettier-config': getSharedPackageVersion('prettier-config'),
+    }
+
+    const replace = (deps) => {
+      if (!deps) return
+      for (const [name, version] of Object.entries(versions)) {
+        if (deps[name] && deps[name].startsWith('workspace:')) {
+          deps[name] = `^${version}`
+        }
+      }
+    }
+
+    replace(pkg.dependencies)
+    replace(pkg.devDependencies)
+
+    writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
+  } catch {
+    // ignore invalid package.json
+  }
+}
+
 // 更新 package.json 中的 name
 async function updatePackageName(dir, name) {
   const pkgPath = join(dir, 'package.json')
@@ -204,6 +247,7 @@ async function createProject(templateName, projectName) {
   try {
     await copyDir(template.path, dest)
     await updatePackageName(dest, visibleName)
+    replaceWorkspaceVersions(dest)
     spinner.succeed(`Project ${chalk.cyan(visibleName)} created successfully`)
   } catch (err) {
     spinner.fail(`Failed to create project: ${err.message}`)

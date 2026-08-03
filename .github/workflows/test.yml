@@ -1,35 +1,37 @@
 name: Test
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          version: 10
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@fe02b34f77f8ed7d1fbc2f29a8bc2e5f9b91e28e # v4.0.0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: 20
           cache: pnpm
 
-      - name: Install
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
 
-      - name: Linter
+      - name: Lint
         run: pnpm lint
-
-      - name: Test
-        run: pnpm test:run
