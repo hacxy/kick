@@ -40,7 +40,6 @@
     "ora": "^9.4.1"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.1",
     "@hacxy/eslint-config": "workspace:*",
     "@hacxy/prettier-config": "workspace:*",
     "@hacxy/tsconfig": "workspace:*",

@@ -1,7 +1,6 @@
 packages:
   - 'shared/*'
   - 'templates/*'
-  - 'web'
 allowBuilds:
   esbuild: true
   sharp: true
