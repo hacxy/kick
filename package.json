@@ -20,7 +20,9 @@
   },
   "files": [
     "bin",
-    "templates"
+    "templates",
+    "!templates/**/node_modules",
+    "!templates/**/dist"
   ],
   "scripts": {
     "dev": "vite",
