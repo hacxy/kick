@@ -73,6 +73,9 @@ async function emptyDir(dir) {
   await Promise.all(files.map((file) => rm(join(dir, file), { recursive: true, force: true })))
 }
 
+// 复制时跳过的目录（避免把模板的依赖和构建产物带入新项目）
+const SKIP_DIRS = new Set(['node_modules', 'dist', '.git'])
+
 // 复制目录
 async function copyDir(src, dest) {
   await mkdir(dest, { recursive: true })
@@ -81,6 +84,10 @@ async function copyDir(src, dest) {
   for (const entry of entries) {
     const srcPath = join(src, entry.name)
     const destPath = join(dest, entry.name)
+
+    if (entry.isDirectory() && SKIP_DIRS.has(entry.name)) {
+      continue
+    }
 
     if (entry.isDirectory()) {
       await copyDir(srcPath, destPath)
@@ -145,6 +152,29 @@ async function updatePackageName(dir, name) {
   } catch {
     // ignore invalid package.json
   }
+}
+
+// 模板依赖中带有构建脚本的包（pnpm 11 需要 allowBuilds 才能执行，
+// 否则安装报 ERR_PNPM_IGNORED_BUILDS）：
+// - esbuild: tsup / vite 的依赖（express / library / react / vue）
+// - sharp, unrs-resolver: next.js 的依赖
+// - @google/genai, protobufjs: pi-coding-agent 的传递依赖
+const ALLOW_BUILDS = {
+  esbuild: true,
+  sharp: true,
+  'unrs-resolver': true,
+  '@google/genai': true,
+  protobufjs: true,
+}
+
+// 为新项目写入 pnpm-workspace.yaml（allowBuilds）
+// 不能直接放在模板里，否则会遮蔽 monorepo 根工作区，因此在脚手架阶段生成
+async function writePnpmWorkspaceConfig(dir) {
+  const lines = [
+    'allowBuilds:',
+    ...Object.entries(ALLOW_BUILDS).map(([name, value]) => `  ${JSON.stringify(name)}: ${value}`),
+  ]
+  writeFileSync(join(dir, 'pnpm-workspace.yaml'), `${lines.join('\n')}\n`)
 }
 
 // 选择模板
@@ -248,6 +278,7 @@ async function createProject(templateName, projectName) {
     await copyDir(template.path, dest)
     await updatePackageName(dest, visibleName)
     replaceWorkspaceVersions(dest)
+    await writePnpmWorkspaceConfig(dest)
     spinner.succeed(`Project ${chalk.cyan(visibleName)} created successfully`)
   } catch (err) {
     spinner.fail(`Failed to create project: ${err.message}`)

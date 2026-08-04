@@ -20,10 +20,18 @@ export function hacxy(options = {}) {
   const configs = [...baseConfig]
 
   if (options.react) {
+    if (reactConfig.length === 0) {
+      console.error(
+        '[@hacxy/eslint-config] react: true 已启用，但未安装 eslint-plugin-react / eslint-plugin-react-hooks',
+      )
+    }
     configs.push(...reactConfig)
   }
 
   if (options.vue) {
+    if (vueConfig.length === 0) {
+      console.error('[@hacxy/eslint-config] vue: true 已启用，但未安装 eslint-plugin-vue')
+    }
     configs.push(...vueConfig)
   }
 
