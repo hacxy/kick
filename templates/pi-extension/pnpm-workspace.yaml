@@ -1,16 +1,9 @@
 # pnpm v11 enforces a 24h minimum release age by default (supply-chain
 # policy) — any lockfile entry published < 24h ago fails fresh installs in
-# CI. Opt out explicitly (pnpm's documented escape hatch); templates/
-# scaffolded projects carry their own copy of this setting.
+# CI. Scaffolded projects opt out explicitly (pnpm's documented escape hatch).
 minimumReleaseAge: 0
 
-packages:
-  - 'shared/*'
-  - 'templates/*'
 allowBuilds:
   '@google/genai': true
   esbuild: true
   protobufjs: true
-  sharp: true
-  simple-git-hooks: true
-  unrs-resolver: true
