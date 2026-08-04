@@ -33,9 +33,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
-          # npm OIDC 信任发布要求 Node >= 22.14 / npm >= 11.5.1
+          # npm OIDC 信任发布要求 Node >= 22.14 / npm >= 11.5.1。
+          # 注意：不要设置 registry-url —— setup-node 会因此写入
+          # _authToken=${NODE_AUTH_TOKEN} 到 .npmrc（actions/setup-node #1551），
+          # 让 npm 优先走 token 认证而非 OIDC，导致 provenance 缺失。
           node-version: 24
-          registry-url: 'https://registry.npmjs.org'
           cache: pnpm
 
       - name: Install dependencies
@@ -62,21 +64,31 @@ jobs:
           fi
           echo "Publishing version ${VERSION}"
 
-      # 以下 4 个包由 release.sh 按同一 bump 类型各自升级版本；发布走 OIDC 自动认证
+      # 以下 4 个包由 release.sh 按同一 bump 类型各自升级版本；发布走 OIDC 自动认证。
+      # unset NODE_AUTH_TOKEN：杜绝任何 token 认证路径（如 NPM_TOKEN secret 自动注入），
+      # 强制 npm 使用 OIDC，从而自动生成 provenance。
       - name: Publish @hacxy/tsconfig
         working-directory: shared/tsconfig
-        run: npm publish --access public
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
 
       - name: Publish @hacxy/prettier-config
         working-directory: shared/prettier-config
-        run: npm publish --access public
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
 
       - name: Publish @hacxy/eslint-config
         working-directory: shared/eslint-config
-        run: npm publish --access public
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
 
       - name: Publish @hacxy/kick
-        run: npm publish --access public
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
 
       - name: Create GitHub Release
         run: npx changelogithub
