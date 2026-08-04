@@ -4,11 +4,9 @@
 
 Kick 是一个项目脚手架 CLI 工具，采用 monorepo 结构。
 
-**核心设计理念**：
+## 禁止事项
 
-- 模板是一次性脚手架，创建后与 CLI 无关
-- 基础设施（ESLint、Prettier、TypeScript 配置）通过 `@hacxy/*` npm 包持续更新
-- 用户通过 `pnpm update @hacxy/*` 更新配置，而不是同步模板
+- 禁止使用注释来解决lint问题
 
 ## 项目结构
 

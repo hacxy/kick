@@ -1,6 +1,8 @@
 import { Copy, Check, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 
+import templates from '../data/templates.json'
+
 interface Template {
   name: string
   category: string
@@ -8,44 +10,6 @@ interface Template {
   techStack: string[]
   command: string
 }
-
-const templates: Template[] = [
-  {
-    name: 'react',
-    category: 'frontend',
-    description: 'React 19 + Vite + TypeScript + Tailwind CSS',
-    techStack: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
-    command: 'npx @hacxy/kick new react my-app',
-  },
-  {
-    name: 'vue',
-    category: 'frontend',
-    description: 'Vue 3 + Vite + TypeScript + UnoCSS',
-    techStack: ['Vue', 'Vite', 'TypeScript', 'UnoCSS'],
-    command: 'npx @hacxy/kick new vue my-app',
-  },
-  {
-    name: 'next',
-    category: 'fullstack',
-    description: 'Next.js 15 + TypeScript + Tailwind CSS',
-    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    command: 'npx @hacxy/kick new next my-app',
-  },
-  {
-    name: 'express',
-    category: 'backend',
-    description: 'Express + TypeScript',
-    techStack: ['Express', 'TypeScript', 'Node.js'],
-    command: 'npx @hacxy/kick new express my-api',
-  },
-  {
-    name: 'library',
-    category: 'others',
-    description: 'TypeScript + tsup + Vitest',
-    techStack: ['TypeScript', 'tsup', 'Vitest'],
-    command: 'npx @hacxy/kick new library my-lib',
-  },
-]
 
 const categoryLabels: Record<string, string> = {
   frontend: '前端',

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "express",
+    "category": "backend",
+    "description": "Express + TypeScript",
+    "techStack": ["Express", "TypeScript"],
+    "command": "npx @hacxy/kick new express my-app"
+  },
+  {
+    "name": "library",
+    "category": "library",
+    "description": "TypeScript + tsup + Vitest",
+    "techStack": ["TypeScript", "tsup", "Vitest"],
+    "command": "npx @hacxy/kick new library my-app"
+  },
+  {
+    "name": "next",
+    "category": "fullstack",
+    "description": "Next.js 15 + TypeScript + Tailwind CSS",
+    "techStack": ["Next.js 15", "TypeScript", "Tailwind CSS"],
+    "command": "npx @hacxy/kick new next my-app"
+  },
+  {
+    "name": "react",
+    "category": "frontend",
+    "description": "React 19 + Vite + TypeScript + Tailwind CSS",
+    "techStack": ["React 19", "Vite", "TypeScript", "Tailwind CSS"],
+    "command": "npx @hacxy/kick new react my-app"
+  },
+  {
+    "name": "vue",
+    "category": "frontend",
+    "description": "Vue 3 + Vite + TypeScript + UnoCSS",
+    "techStack": ["Vue 3", "Vite", "TypeScript", "UnoCSS"],
+    "command": "npx @hacxy/kick new vue my-app"
+  }
+]

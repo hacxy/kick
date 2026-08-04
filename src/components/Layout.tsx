@@ -1,11 +1,11 @@
-import { Home, Settings, Package, Menu, X } from 'lucide-react'
+import { Menu, Settings, Package, Home, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 const navItems = [
   { path: '/', label: '首页', icon: Home },
-  { path: '/config', label: '配置', icon: Settings },
   { path: '/templates', label: '模板', icon: Package },
+  { path: '/config', label: '配置', icon: Settings },
 ]
 
 export function Layout() {
@@ -13,9 +13,16 @@ export function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'var(--color-bg)',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       {/* Header */}
-      <header
+      <div
         style={{
           position: 'sticky',
           top: 0,
@@ -104,26 +111,40 @@ export function Layout() {
               })}
             </nav>
 
-            {/* GitHub Link */}
-            <a
-              href="https://github.com/hacxy/kick"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
-                borderRadius: '0.5rem',
-                fontSize: '0.875rem',
-                color: 'var(--color-text-muted)',
-                border: '1px solid var(--color-border)',
-                textDecoration: 'none',
-                transition: 'all 0.2s',
-              }}
-            >
-              GitHub
-            </a>
+            {/* GitHub Link + Version */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: '9999px',
+                  background: 'rgba(196, 248, 42, 0.1)',
+                  color: 'var(--color-accent)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                v0.9.6
+              </span>
+              <a
+                href="https://github.com/hacxy/kick"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  fontSize: '0.875rem',
+                  color: 'var(--color-text-muted)',
+                  border: '1px solid var(--color-border)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s',
+                }}
+              >
+                GitHub
+              </a>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -142,18 +163,26 @@ export function Layout() {
             </button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
-      <main style={{ maxWidth: '80rem', margin: '0 auto', padding: '2rem 1rem' }}>
+      <main
+        style={{
+          maxWidth: '80rem',
+          width: '100%',
+          margin: '0 auto',
+          padding: '2rem 1rem',
+          flex: 1,
+        }}
+      >
         <Outlet />
       </main>
 
       {/* Footer */}
       <footer
         style={{
-          marginTop: '5rem',
-          padding: '2rem 0',
+          marginTop: '2rem',
+          padding: '1rem 0',
           textAlign: 'center',
           fontSize: '0.875rem',
           color: 'var(--color-text-muted)',
