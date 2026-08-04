@@ -76,5 +76,30 @@ echo "  - @hacxy/tsconfig"
 echo "  - @hacxy/prettier-config"
 echo "  - @hacxy/eslint-config"
 echo "  - @hacxy/kick@$CLI_VERSION"
+
 echo ""
-echo "Check progress at: https://github.com/hacxy/kick/actions"
+echo "👀 Watching GitHub Actions (requires gh CLI)..."
+HEAD_SHA=$(git rev-parse HEAD)
+RUN_ID=""
+for _ in $(seq 1 15); do
+RUN_ID=$(gh run list --workflow=Release --limit=5 --json databaseId,headSha \
+--jq ".[] | select(.headSha == \"$HEAD_SHA\") | .databaseId" 2>/dev/null | head -1)
+[ -n "$RUN_ID" ] && break
+sleep 2
+done
+
+if [ -z "$RUN_ID" ]; then
+echo "⚠️ 未能自动定位 CI 运行，可手动查看：gh run list --workflow=Release"
+exit 0
+fi
+
+if gh run watch "$RUN_ID" --exit-status; then
+URL=$(gh run view "$RUN_ID" --json url --jq .url)
+echo ""
+echo "✅ 发布成功：$URL"
+echo "   验证：npm view @hacxy/kick version"
+else
+echo ""
+echo "❌ CI 运行失败，查看详情：gh run view $RUN_ID --log-failed"
+exit 1
+fi

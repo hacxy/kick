@@ -72,5 +72,9 @@
     "*.{json,md,yml,yaml,css}": [
       "prettier --write"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hacxy/kick.git"
   }
 }
